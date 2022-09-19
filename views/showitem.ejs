@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Show Item</title>
+    <%- include('header'); -%>
+</head>
+
+<body>
+    <div id="app">
+        <% if (success) { %>
+        <div class="card" style="width: 18rem;">
+            <img src="/img/<%= item.imageUrl %>" class="card-img-top">
+            <div class="card-body">
+                <h2 class="card-title"><%= item.title %></h2>
+                <p class="card-text">ID: <%= item.id %></p>
+                <p class="card-text">Price: <%= item.price %></p>
+                <a href="#" @click="goBack()" class="btn btn-primary">Back</a>
+            </div>
+        </div>
+        <% } else { %>
+        <div class="alert alert-danger" role="alert">
+            <h3>Item Not Found!</h3>
+            <a href="#" @click="goBack()" class="btn btn-dark">Back</a>
+        </div>
+        <% } %>
+    </div>
+    <script src="/js/showitem.js"></script>
+</body>
+
+</html>

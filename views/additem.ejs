@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Add Item</title>
+    <%- include('header'); -%>
+</head>
+
+<body>
+    <div class="m-2 p-2 bg-dark text-light">
+        <h2>Add Item</h2>
+    </div>
+    <div id="app">
+        <div v-if="showFail" class="alert alert-primary" role="alert">
+            There is some error with the input.
+        </div>
+        <div v-if="showSuccess" class="alert alert-success" role="alert">
+            Success!
+        </div>
+
+        <form action="/add_item" method="post" id="addForm" class="m-2 p-2 border">
+            <div class="form-group">
+                <label class="font-weight-bold" for="title">Title</label>
+                <div class="d-lg-flex flex-lg-row">
+                    <input type="text" class="form-control flex-shrink-1" aria-describedby="title" placeholder="Title"
+                        v-model="title">
+                    <div v-if="titleError" class="alert alert-danger w-100" role="alert">
+                        Please enter at least one character.
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="font-weight-bold" for="price">Price</label>
+                <div class="d-lg-flex flex-lg-row">
+                    <input type="number" min="0" max="100000" step="1" class="form-control flex-shrink-1" placeholder="Price"
+                        v-model.number="price" v-on>
+                    <div v-if="priceError" class="alert alert-danger w-100" role="alert">
+                        Please enter an integer between 0 and 1000000.
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="font-weight-bold" class="w3-text-grey">Image URL</label>
+                <div class="d-lg-flex flex-lg-row">
+                    <select name="imageUrl" class="form-control flex-shrink-1" v-model="imageUrl">
+                        <option value="">Select</option>
+                        <% for(var i = 1; i <= 10; i++) {%>
+                        <option value="<%= i %>.jpg"><%= i %>.jpg</option>
+                        <% } %>
+                    </select>
+                    <div v-if="imgError" class="alert alert-danger w-100" role="alert">
+                        Please select an image.
+                    </div>
+                </div>
+            </div>
+            <button @click="submit" type="submit" form="item_form" class="btn btn-primary">Add &nbsp; ❯</button>
+        </form>
+    </div>
+    <script src="/js/additem.js"></script>
+</body>
+
+</html>

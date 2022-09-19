@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>All Items</title>
+    <%- include('header'); -%>
+</head>
+
+<body>
+    <div id="app">
+        <input type="text" class="form-control m-2" placeholder="Search" aria-label="title" v-on:keyup="search">
+        <ul id="itemList" class="list-group">
+            <li class="list-group-item" v-for="item in fItems">
+                <div class="card flex-row flex-wrap">
+                    <div class="card-header border-0">
+                        <img class="card-img-top" v-bind:src="'/sm/img/' + item.imageUrl" style="width:85px">
+                    </div>
+                    <div class="card-block px-2">
+                        <h5 class="card-title">{{ item.title }}</h5>
+                        <p class="card-text">Price: {{ item.price }}</p>
+                        <button @click="viewItem(item)" class="btn btn-primary">View</button>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <script src="/js/allitems.js"></script>
+</body>
+
+</html>
